@@ -64,9 +64,7 @@ def make_tweet(exclamations_file, adverbs_file, adjectives_file):
     tweet_burt = exclamation_burt + "! I hear Burton's " + food_burt + article_burt + adverb_burt + " " + adjective_burt + ". #" + station_name_burt + " #WestSideBestSide\n"
     
     f = open("tweet.txt", 'w')
-    f.write("Our tweet for LDC:\n")
     f.write(tweet_ldc)
-    f.write("\n\nOur tweet for Burton:\n")
     f.write(tweet_burt)
     f.close
     ex_file.close()

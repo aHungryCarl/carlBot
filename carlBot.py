@@ -5,18 +5,21 @@ import sys
 import tweet_maker
  
 argfile = str(sys.argv[1])
+
+config_file = open('config.txt','r')
+keys = config_file.read().splitlines()
+filename.close()
  
 #enter the corresponding information from your Twitter application:
-CONSUMER_KEY = 'ON7VYEdsnLfRmry7a5wCfX57A'
-CONSUMER_SECRET = 'bNFFQX66KBfuHjsRmUqW9PkcADdBmpIOJDXfmkU0pQNtTBTtJ0'
-ACCESS_KEY = '718694695279308800-xnkB0FMuTekHyptngve0xyjf9XClFoz'
-ACCESS_SECRET = 'KLzAMDtSjQ9UqAvRRCojI7sqRQeCuVIktCyVUpdLflB20'
+CONSUMER_KEY = keys[0]
+CONSUMER_SECRET = keys[1]
+ACCESS_KEY = keys[2]
+ACCESS_SECRET = keys[3]
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
-api = tweepy.API(auth) 
+api = tweepy.API(auth)
 
 def job():
-    print("I'm running the job function")
     tweet_maker.make_tweet("exclamations.txt", "adverbs.txt", "adjectives.txt")
     
     filename=open(argfile,'r')
