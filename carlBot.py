@@ -8,7 +8,7 @@ argfile = str(sys.argv[1])
 
 config_file = open('config.txt','r')
 keys = config_file.read().splitlines()
-filename.close()
+config_file.close()
  
 #enter the corresponding information from your Twitter application:
 CONSUMER_KEY = keys[0]
