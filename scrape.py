@@ -6,8 +6,11 @@ import re
 
 class Scrape:
     def __init__(self):
-        self.text_ldc = self.pullFromWebLDC()
-        self.text_burt = self.pullFromWebBurton()
+#        self.text_ldc = self.pullFromWebLDC()
+#        self.text_burt = self.pullFromWebBurton()
+        
+        self.text_ldc = self.readFromFileLDC()
+        self.text_burt = self.readFromFileBurt()
         
         self.foodList_ldc = self.breakFood(self.text_ldc)
         self.foodList_burt = self.breakFood(self.text_burt)
@@ -65,13 +68,13 @@ class Scrape:
         f.close()
         
     def readFromFileLDC(self):
-        f = open('src.txt_ldc', 'r')
+        f = open('src_ldc.txt', 'r')
         text = f.read()
         f.close()
         return text
     
     def readFromFileBurt(self):
-        f = open('src.txt_burt', 'r')
+        f = open('src_burt.txt', 'r')
         text = f.read()
         f.close()
         return text
@@ -183,6 +186,8 @@ class Scrape:
         editedList = []
         for item in foodList:
             editedItem = re.sub(r'\([^)]*\)', '', item)
+            for num in range(10):
+                editedItem = re.sub(str(num), '', editedItem)
             editedItem = editedItem.strip(' "\'\t\r\n ')
             editedList.append(editedItem)
         return editedList

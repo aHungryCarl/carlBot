@@ -63,12 +63,14 @@ def make_tweet(exclamations_file, adverbs_file, adjectives_file):
     else:
         article_burt = " is "
         
-    tweet_ldc = exclamation_ldc + "! I hear LDC's " + food_ldc + article_ldc + adverb_ldc + " " + adjective_ldc + ". #" + station_name_ldc + " #LeDiC\n"
+    tweet_ldc = exclamation_ldc + "! I hear LDC's " + food_ldc + article_ldc + adverb_ldc + " " + adjective_ldc + ". #" + station_name_ldc + " #LDC\n"
     tweet_burt = exclamation_burt + "! I hear Burton's " + food_burt + article_burt + adverb_burt + " " + adjective_burt + ". #" + station_name_burt + " #WestSideBestSide\n"
     
     
     f = open("tweet.txt", 'w')
+    f.write("Our tweet for LDC:\n")
     f.write(tweet_ldc)
+    f.write("\n\nOur tweet for Burton:\n")
     f.write(tweet_burt)
     f.close
     ex_file.close()
@@ -79,15 +81,24 @@ def sanitize_food(food_name):
     words = food_name.split(" ")
     cut_index = len(words)
     for i in range(len(words)):
+        print(words[i])
         if words[i].lower() == "with" or words[i].lower() == "available" or words[i].lower == "LLC\"":
             cut_index = i
         if words[i] == '{':
             words[i] = "Pasta"
-    ##for word in words:
-        ##if word[-2:] == "ed":
-            ##words.remove(word)
+#    for word in words:
+#        if word == "":
+#            words.remove(word)
     words = words[0:cut_index]
-    return ' '.join(words)
+    finalString = ''
+    for i in range(len(words)):
+        if words[i] != "":
+            finalString = finalString + words[i]
+        if i != (len(words) - 1):
+            finalString = finalString + " "
+            
+    #return ' '.join(words)
+    return finalString
 
 def main():
     make_tweet('exclamations.txt','adverbs.txt','adjectives.txt')

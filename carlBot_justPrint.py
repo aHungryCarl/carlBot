@@ -16,7 +16,6 @@ auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth) 
 
 def job():
-    print("I'm running the job function")
     tweet_maker.make_tweet("exclamations.txt", "adverbs.txt", "adjectives.txt")
     
     filename=open(argfile,'r')
@@ -25,13 +24,7 @@ def job():
     
     for line in tweets:
         print(line)
-        api.update_status(line)
-        time.sleep(900)     #Tweet every 15 minutes
-
-print("I have the current code")
-schedule.every().day.at("18:00").do(job)
-schedule.every().day.at("19:00").do(job)
+        time.sleep(10)     #Tweet every 15 minutes
 
 while True:
-    schedule.run_pending()
-    time.sleep(60) # wait one minute
+    job()
