@@ -48,9 +48,6 @@ def make_tweet(exclamations_file, adverbs_file, adjectives_file):
     food_ldc = sanitize_food(food_name_ldc)
     food_burt = sanitize_food(food_name_burt)
     
-    #print(food_name_ldc + " --> " + food_ldc)
-    #print(food_name_burt + " --> " + food_burt)
-    
     article_ldc = ""
     if food_ldc[-1] == "s":
         article_ldc = " are "
@@ -65,7 +62,6 @@ def make_tweet(exclamations_file, adverbs_file, adjectives_file):
         
     tweet_ldc = exclamation_ldc + "! I hear LDC's " + food_ldc + article_ldc + adverb_ldc + " " + adjective_ldc + ". #" + station_name_ldc + " #LDC\n"
     tweet_burt = exclamation_burt + "! I hear Burton's " + food_burt + article_burt + adverb_burt + " " + adjective_burt + ". #" + station_name_burt + " #WestSideBestSide\n"
-    
     
     f = open("tweet.txt", 'w')
     f.write("Our tweet for LDC:\n")
@@ -86,9 +82,6 @@ def sanitize_food(food_name):
             cut_index = i
         if words[i] == '{':
             words[i] = "Pasta"
-#    for word in words:
-#        if word == "":
-#            words.remove(word)
     words = words[0:cut_index]
     finalString = ''
     for i in range(len(words)):
@@ -97,7 +90,6 @@ def sanitize_food(food_name):
         if i != (len(words) - 1):
             finalString = finalString + " "
             
-    #return ' '.join(words)
     return finalString
 
 def main():
